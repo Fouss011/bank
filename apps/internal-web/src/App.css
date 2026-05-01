@@ -605,3 +605,76 @@ button {
   background: #063763;
   color: white;
 }
+
+@media (max-width: 760px) {
+  .app-shell {
+    display: block;
+  }
+
+  .sidebar {
+    position: relative;
+    width: auto;
+    min-height: auto;
+    padding: 24px;
+  }
+
+  .sidebar-brand h1 {
+    font-size: 30px;
+  }
+
+  .nav button {
+    font-size: 18px;
+    padding: 18px;
+  }
+
+  .user-box {
+    margin-top: 26px;
+  }
+
+  .logout {
+    margin-top: 12px;
+    width: 100%;
+  }
+
+  .main-panel {
+    min-height: auto;
+  }
+
+  .page-header {
+    padding: 34px 24px;
+    display: block;
+  }
+
+  .page-header h2 {
+    font-size: 34px;
+    line-height: 1.1;
+  }
+
+  .security-badge {
+    width: fit-content;
+    margin-top: 22px;
+  }
+
+  .messages {
+    padding: 24px;
+    min-height: 360px;
+    max-height: none;
+  }
+
+  .empty-state {
+    margin-top: 40px;
+    padding: 28px 20px;
+  }
+
+  .empty-state h3 {
+    font-size: 30px;
+    line-height: 1.15;
+  }
+
+  .ask-form {
+    position: sticky;
+    bottom: 0;
+    padding: 14px;
+    background: white;
+  }
+}

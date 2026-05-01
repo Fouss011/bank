@@ -205,3 +205,85 @@ body {
   white-space: pre-wrap;
   line-height: 1.6;
 }
+
+@media (max-width: 760px) {
+  .hero {
+    padding: 34px 30px 90px;
+  }
+
+  .brand h1 {
+    font-size: 28px;
+  }
+
+  .brand p {
+    font-size: 17px;
+  }
+
+  .hero-content {
+    margin-top: 34px;
+  }
+
+  .hero-content h2 {
+    font-size: 36px;
+    line-height: 1.12;
+  }
+
+  .hero-content p {
+    font-size: 21px;
+    line-height: 1.35;
+  }
+
+  .quick-actions {
+    width: calc(100% - 32px);
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: -66px auto 18px;
+  }
+
+  .quick-actions button {
+    min-height: 66px;
+    font-size: 18px;
+    border-radius: 20px;
+  }
+
+  .chat-card {
+    width: calc(100% - 32px);
+    margin: 0 auto 20px;
+    min-height: 520px;
+    border-radius: 24px;
+  }
+
+  .messages {
+    min-height: 420px;
+    max-height: none;
+    padding: 26px 20px;
+  }
+
+  .empty {
+    margin-top: 70px;
+    padding: 0 14px;
+  }
+
+  .empty h3 {
+    font-size: 34px;
+    line-height: 1.12;
+  }
+
+  .empty p {
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .message {
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .ask-form {
+    position: sticky;
+    bottom: 0;
+    grid-template-columns: 1fr 58px;
+    padding: 14px;
+    background: white;
+  }
+}

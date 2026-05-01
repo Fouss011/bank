@@ -15,8 +15,8 @@ const API_URL = 'https://backend-dry-grove-3348.fly.dev/api'
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem('banque_ia_token') || '')
-  const [email, setEmail] = useState('admin@demo.com')
-  const [password, setPassword] = useState('123456')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [activePage, setActivePage] = useState('chat')
   const [loading, setLoading] = useState(false)
@@ -345,16 +345,21 @@ export default function App() {
           <form onSubmit={login} className="login-form">
             <div>
               <label>Adresse email</label>
-              <input value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  placeholder="votre.email@banque.com"
+/>
             </div>
 
             <div>
               <label>Mot de passe</label>
               <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+  type="password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  placeholder="Votre mot de passe"
+/>
             </div>
 
             <button disabled={loading}>
