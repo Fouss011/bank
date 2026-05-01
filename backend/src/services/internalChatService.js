@@ -15,6 +15,27 @@ const askSchema = z.object({
   session_id: z.string().uuid().optional().nullable()
 })
 
+const MIN_SIMILARITY_SCORE = 0.75
+
+function filterRelevantChunks(chunks) {
+  return chunks.filter((chunk) => {
+    if (typeof chunk.similarity !== 'number') {
+      return true
+    }
+
+    return chunk.similarity >= MIN_SIMILARITY_SCORE
+  })
+}
+
+function buildNoAnswerMessage() {
+  return (
+    "1. Réponse courte\n" +
+    "L'information demandée n'est pas disponible dans les documents internes accessibles.\n\n" +
+    "2. Détails utiles\n" +
+    "Aucun document interne pertinent ne permet de répondre avec certitude à cette question."
+  )
+}
+
 export async function askInternalCopilot(input, user) {
   const payload = askSchema.parse(input)
   const intent = detectConversationIntent(payload.question)
@@ -56,34 +77,35 @@ export async function askInternalCopilot(input, user) {
 
   let chunks = []
 
-try {
-  const queryEmbedding = await generateEmbedding(payload.question)
+  try {
+    const queryEmbedding = await generateEmbedding(payload.question)
 
-  chunks = await searchChunksByEmbedding({
-    bankId: user.bank_id,
-    accessLevel: user.access_level,
-    scope: 'internal',
-    queryEmbedding
-  })
-} catch (error) {
-  console.error('⚠️ Embedding indisponible, fallback recherche texte:', error.message)
+    chunks = await searchChunksByEmbedding({
+      bankId: user.bank_id,
+      accessLevel: user.access_level,
+      scope: 'internal',
+      queryEmbedding
+    })
+  } catch (error) {
+    console.error('⚠️ Embedding indisponible, fallback recherche texte:', error.message)
 
-  chunks = await searchAuthorizedChunks({
-    bankId: user.bank_id,
-    accessLevel: user.access_level,
-    scope: 'internal',
-    query: payload.question
-  })
-}
+    chunks = await searchAuthorizedChunks({
+      bankId: user.bank_id,
+      accessLevel: user.access_level,
+      scope: 'internal',
+      query: payload.question
+    })
+  }
+
+  const relevantChunks = filterRelevantChunks(chunks)
 
   let answer
   let citations = []
 
-  if (!chunks.length) {
-    answer =
-      "Je n’ai pas trouvé d’information validée dans les documents accessibles à votre niveau. Je ne peux donc pas répondre avec certitude."
+  if (!relevantChunks.length) {
+    answer = buildNoAnswerMessage()
   } else {
-    citations = chunks.map((chunk) => ({
+    citations = relevantChunks.map((chunk) => ({
       document_id: chunk.document_id,
       document_title: chunk.documents?.title,
       chunk_id: chunk.id,
@@ -91,7 +113,7 @@ try {
       similarity: chunk.similarity
     }))
 
-    const context = chunks
+    const context = relevantChunks
       .map((chunk, index) => {
         return `Source ${index + 1} - ${chunk.documents?.title}:\n${chunk.content}`
       })
@@ -99,7 +121,8 @@ try {
 
     answer = await generateAnswer({
       question: payload.question,
-      context
+      context,
+      mode: 'internal'
     })
   }
 
