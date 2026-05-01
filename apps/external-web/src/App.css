@@ -246,18 +246,6 @@ body {
     border-radius: 20px;
   }
 
-  .chat-card {
-    width: calc(100% - 32px);
-    margin: 0 auto 20px;
-    min-height: 520px;
-    border-radius: 24px;
-  }
-
-  .messages {
-    min-height: 420px;
-    max-height: none;
-    padding: 26px 20px;
-  }
 
   .empty {
     margin-top: 70px;
@@ -279,25 +267,39 @@ body {
     font-size: 16px;
   }
 
-  .ask-form {
-  position: fixed;
-  left: 16px;
-  right: 16px;
-  bottom: env(safe-area-inset-bottom, 0);
-  z-index: 50;
+  .chat-card {
+  width: calc(100% - 32px);
+  margin: 0 auto 20px;
+  height: 72vh;
+  min-height: 520px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+.messages {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  padding: 26px 20px;
+  overflow-y: auto;
+}
+
+.ask-form {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  z-index: 2;
   grid-template-columns: 1fr 58px;
-  padding: 12px;
+  padding: 14px;
   background: white;
-  border: 1px solid #d0d5dd;
-  border-radius: 22px;
-  box-shadow: 0 18px 45px rgba(16, 24, 40, 0.22);
+  border-top: 1px solid #d0d5dd;
+  box-shadow: none;
+  border-radius: 0;
 }
 
-.external-app {
-  padding-bottom: 110px;
-}
 
-.chat-card {
-  padding-bottom: 90px;
-}
 }
