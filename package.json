@@ -1,0 +1,13 @@
+{
+  "name": "banque-ia",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "backend"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace backend",
+    "start:backend": "npm run start --workspace backend"
+  }
+}
