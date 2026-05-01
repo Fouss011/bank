@@ -672,9 +672,25 @@ button {
   }
 
   .ask-form {
-    position: sticky;
-    bottom: 0;
-    padding: 14px;
-    background: white;
-  }
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: env(safe-area-inset-bottom, 0);
+  z-index: 50;
+  grid-template-columns: 1fr 58px;
+  padding: 12px;
+  background: white;
+  border: 1px solid #d0d5dd;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(16, 24, 40, 0.2);
+}
+
+.main-panel {
+  padding-bottom: 110px;
+}
+
+.messages {
+  padding-bottom: 80px;
+}
+
 }
