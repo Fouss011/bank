@@ -334,7 +334,8 @@ export default function App() {
         <section className="login-card">
           <div className="login-brand">
             <div className="brand-mark">
-              <Building2 size={30} />
+  <img src="/logo-icon-512.png" alt="Logo" className="brand-logo" />
+              
             </div>
             <div>
               <h1>Banque IA</h1>
@@ -376,8 +377,8 @@ export default function App() {
       <aside className="sidebar">
         <div className="sidebar-brand">
           <div className="brand-mark small">
-            <Building2 size={24} />
-          </div>
+  <img src="/logo-icon-512.png" alt="Logo" className="brand-logo" />
+</div>
           <div>
             <h1>Banque IA</h1>
             <p>Portail interne</p>

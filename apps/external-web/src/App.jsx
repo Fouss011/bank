@@ -82,7 +82,8 @@ export default function App() {
       <header className="hero">
         <div className="brand">
           <div className="brand-icon">
-            <Building2 size={30} />
+  <img src="/logo-icon-512.png" alt="Logo" className="brand-logo" />
+            
           </div>
           <div>
             <h1>Banque</h1>

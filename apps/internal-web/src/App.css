@@ -80,6 +80,23 @@ button {
   place-items: center;
 }
 
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-mark {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.brand-mark.small .brand-logo {
+  width: 30px;
+  height: 30px;
+}
+
 .brand-mark.small {
   width: 46px;
   height: 46px;
@@ -687,5 +704,7 @@ button {
   grid-template-columns: 1fr 58px;
   gap: 12px;
 }
+
+
 
 }
