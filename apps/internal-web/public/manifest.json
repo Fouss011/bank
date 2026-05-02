@@ -1,6 +1,7 @@
 {
-  "name": "Banque IA Client",
-  "short_name": "Banque IA",
+  "name": "Banque IA Interne",
+  "short_name": "Banque Interne",
+  "id": "/banque-ia-interne",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

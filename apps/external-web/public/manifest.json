@@ -1,7 +1,9 @@
 {
-  "name": "Banque IA",
-  "short_name": "Banque IA",
+  "name": "Banque IA Client",
+  "short_name": "Banque Client",
+  "id": "/banque-ia-client",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#061a33",
   "theme_color": "#0b2f5b",
