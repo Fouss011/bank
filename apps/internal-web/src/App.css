@@ -87,11 +87,6 @@ button {
   display: block;
 }
 
-.brand-mark {
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
 .brand-mark.small .brand-logo {
   width: 30px;
   height: 30px;
