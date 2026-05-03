@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Building2, Send } from 'lucide-react'
 import './App.css'
 
@@ -7,6 +7,20 @@ const API_URL = 'https://backend-dry-grove-3348.fly.dev/api'
 export default function App() {
   const [question, setQuestion] = useState('')
   const [messages, setMessages] = useState([])
+  const messagesEndRef = useRef(null)
+
+const scrollToBottom = () => {
+  setTimeout(() => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end'
+    })
+  }, 100)
+}
+
+useEffect(() => {
+  scrollToBottom()
+}, [messages])
   const [loading, setLoading] = useState(false)
 
   async function ask(e) {
@@ -142,6 +156,7 @@ export default function App() {
           ))}
       </div>
     )}
+    <div ref={messagesEndRef} />
   </div>
 ))}
 

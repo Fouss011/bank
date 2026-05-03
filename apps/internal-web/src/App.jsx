@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   Bot,
   Building2,
@@ -23,6 +23,21 @@ export default function App() {
 
   const [question, setQuestion] = useState('')
   const [messages, setMessages] = useState([])
+
+  const messagesEndRef = useRef(null)
+
+const scrollToBottom = () => {
+  setTimeout(() => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end'
+    })
+  }, 100)
+}
+
+useEffect(() => {
+  scrollToBottom()
+}, [messages])
   const [documents, setDocuments] = useState([])
   const [users, setUsers] = useState([])
   const [documentsScope, setDocumentsScope] = useState('internal')
@@ -472,6 +487,8 @@ export default function App() {
                     ))}
                   </div>
                 )}
+
+                <div ref={messagesEndRef} />
               </div>
             ))}
 
